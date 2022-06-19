@@ -7,13 +7,13 @@ Inicio - Proyectando Cursos
 
 {% block contenidoPagina %}
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-secondary py-5">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Inicio del sitio app coder desde django</h1>
-                    <p class="lead text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                    <h1 class="display-5 fw-bolder text-white mb-2">Proyectando Cursos</h1>
+                    <p class="lead text-white-50 mb-4"> El mejor sitio para encontrar tu curso y seguir perfeccionandote. </p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
                         <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
@@ -44,27 +44,27 @@ Inicio - Proyectando Cursos
                     <!-- Name input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                        <label for="name">Full name</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <label for="name">Nombre completo</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">Complete su nombre.</div>
                     </div>
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                        <label for="email">Email address</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <label for="email">Dirección de Email</label>
+                        <div class="invalid-feedback" data-sb-feedback="email:required">Se requiere un email.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">El email es invalido.</div>
                     </div>
                     <!-- Phone number input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                        <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                        <label for="phone">Numero de telefono</label>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">Se requiere un número de telefono.</div>
                     </div>
                     <!-- Message input-->
                     <div class="form-floating mb-3">
                         <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                        <label for="message">Message</label>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                        <label for="message">Mensaje</label>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">Se requiere un mensaje.</div>
                     </div>
                     <!-- Submit success message-->
                     <!---->
@@ -72,7 +72,7 @@ Inicio - Proyectando Cursos
                     <!-- has successfully submitted-->
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
+                            <div class="fw-bolder">Mensaje enviado exitosamente!</div>
                             To activate this form, sign up at
                             <br />
                             <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
@@ -82,9 +82,9 @@ Inicio - Proyectando Cursos
                     <!---->
                     <!-- This is what your users will see when there is-->
                     <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error al enviar el mensaje!</div></div>
                     <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
                 </form>
             </div>
         </div>

@@ -8,7 +8,7 @@ def inicio (request):
 
 def curso (request):
     
-    return HttpResponse("Vista de los cursos")
+    return render(request,"proyecto_cursoApp/curso.html",{})
 
 def evento (request):
     

@@ -21,4 +21,5 @@ urlpatterns = [
     path ('', inicio, name= "inicio" ),
     path ('curso', curso, name= "curso"),
     path ('evento', evento, name= "evento"),
+    path ('contacto', contacto, name= "contacto"),
     ]

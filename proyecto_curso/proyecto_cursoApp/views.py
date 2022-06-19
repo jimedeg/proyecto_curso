@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 def inicio (request):
     
-    return render(request,"proyecto_cursoApp/base.html",{})
+    return render(request,"proyecto_cursoApp/index.html",{})
 
 def curso (request):
     

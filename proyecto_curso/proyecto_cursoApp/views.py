@@ -12,8 +12,8 @@ def curso (request):
 
 def evento (request):
     
-    return HttpResponse("Vista de eventos")
+    return render(request,"proyecto_cursoApp/evento.html",{})
 
 def contacto (request):
     
-    return HttpResponse("Vista de contacto")
+    return render(request,"proyecto_cursoApp/contacto.html",{})

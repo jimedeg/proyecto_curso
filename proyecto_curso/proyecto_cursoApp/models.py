@@ -8,7 +8,7 @@ class Curso(models.Model):
     fecha = models.DateTimeField()
     
 class Evento(models.Model):
-    nombre = models.CharField(max_length=10)
-    info = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
+    info = models.CharField(max_length=100)
     fecha = models.DateTimeField()
     

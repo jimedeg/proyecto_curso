@@ -5,7 +5,7 @@ from proyecto_cursoApp.models import Curso, Evento
 
 # Register your models here.
 class CursoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'info', 'comision')
+    list_display = ('nombre', 'info', 'fecha')
 
 admin.site.register(Curso, CursoAdmin)
 

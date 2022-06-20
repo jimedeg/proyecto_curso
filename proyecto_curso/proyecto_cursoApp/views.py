@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from proyecto_cursoApp.models import Curso, Evento
+
 # Create your views here.
 def inicio (request):
     
@@ -8,11 +10,15 @@ def inicio (request):
 
 def curso (request):
     
-    return render(request,"proyecto_cursoApp/curso.html",{})
+    curso = Curso.objects.all()
+    
+    return render(request,"proyecto_cursoApp/curso.html",{'curso': curso})
 
 def evento (request):
     
-    return render(request,"proyecto_cursoApp/evento.html",{})
+    evento = Evento.objects.all()
+    
+    return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
 
 def contacto (request):
     

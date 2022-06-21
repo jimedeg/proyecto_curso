@@ -23,45 +23,46 @@ Inicio - Proyectando Cursos
     </div>
 </header>
 <!-- Cursos destacados section-->
-<ol class="list-group list-group-numbered">
-    <li class="list-group-item">A list item</li>
-    <li class="list-group-item">A list item</li>
-    <li class="list-group-item">A list item</li>
-  </ol>
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <div class="row gx-6 justify-content-center">
+            <div class="col-lg-6">
+                <h3>Los Cursos son:</h3>
+                <ul class="list-group">
+                    {% for x in curso %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{x.nombre}}</div>
+                                    {{x.info}}
+                            </div>
+                            <span class="badge bg-info rounded-pill">{{x.fecha}}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Eventos destacados section-->
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">List group item heading</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">Some placeholder content in a paragraph.</p>
-      <small>And some small print.</small>
+<div class="list-group"></div>
+    {% for e in evento %}
+    <a href="{% url 'evento' %}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{e.nombre}}</h5>
+            <small class="text-muted"></small>
+        </div>
+        <p class="mb-1">{{e.info}}</p>
+        <small class="text-muted">{{e.fecha}}</small>
     </a>
-    <a href="#" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">List group item heading</h5>
-        <small class="text-muted">3 days ago</small>
-      </div>
-      <p class="mb-1">Some placeholder content in a paragraph.</p>
-      <small class="text-muted">And some muted small print.</small>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">List group item heading</h5>
-        <small class="text-muted">3 days ago</small>
-      </div>
-      <p class="mb-1">Some placeholder content in a paragraph.</p>
-      <small class="text-muted">And some muted small print.</small>
-    </a>
-  </div>
+    {% endfor %}
+</div>
 <!-- Contact section-->
 <section class="bg-light py-5">
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-            <h2 class="fw-bolder">Get in touch</h2>
-            <p class="lead mb-0">We'd love to hear from you</p>
+            <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+            <h2 class="fw-bolder">Contacto</h2>
+            <p class="lead mb-0">Nos encantaría saber su opinión o consulta.</p>
         </div>
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
@@ -116,7 +117,7 @@ Inicio - Proyectando Cursos
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error al enviar el mensaje!</div></div>
                     <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
+                    <div class="d-grid"><button class="btn btn-danger btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
                 </form>
             </div>
         </div>

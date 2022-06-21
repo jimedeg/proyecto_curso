@@ -18,6 +18,7 @@ def evento (request):
     
     evento = Evento.objects.all()
     
+    
     return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
 
 def contacto (request):

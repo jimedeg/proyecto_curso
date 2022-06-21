@@ -15,14 +15,12 @@ def inicio (request):
 def curso (request):
     
     curso = Curso.objects.all()
-    
-        
+            
     return render(request,"proyecto_cursoApp/curso.html",{'curso': curso})
 
 def evento (request):
     
     evento = Evento.objects.all()
-    
     
     return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
 

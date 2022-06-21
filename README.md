@@ -5,8 +5,14 @@ Proyectando
 Landing page que muestra en su página de inicio muestra una descripción,
 los cursos destacados, los últimos eventos y una sección de contacto.
 ## Instalación
-1- En Github en code copiamos el http:
-- ![image](https://user-images.githubusercontent.com/105326853/174858725-5f26258f-6093-4596-a0a7-d38c6c64df88.png)
+1- En Github en code copiamos el https:  
+![instalacion 1](https://user-images.githubusercontent.com/105326853/174861647-019f2a60-bfd6-4d00-8d6c-eae57ccb2b09.png)  
+2- En nuestra terminal elegimos donde clonar la carpeta usando "git clone" y pegamos el link HTTPS que copiamos.  
+git clone 
+-Con github desktop:  
+![instalacion 2](https://user-images.githubusercontent.com/105326853/174861811-9bfeb813-e092-4c25-a822-dfa77ccb56b2.jpg)  
+2- Elegimos donde clonar la carpeta, con https
+ 
 
 ## Panel de administrador
 -usuario : admin  

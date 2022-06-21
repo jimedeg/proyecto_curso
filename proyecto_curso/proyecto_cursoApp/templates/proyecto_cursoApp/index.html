@@ -7,7 +7,7 @@ Inicio - Proyectando Cursos
 
 {% block contenidoPagina %}
 <!-- Header-->
-<header class="bg-light py-5">
+<header class="bg-danger p-2 text-dark bg-opacity-10 py-5"> 
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
@@ -32,10 +32,10 @@ Inicio - Proyectando Cursos
                     {% for x in curso %}
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{x.nombre}}</div>
+                                <div class="text-danger fw-bold">{{x.nombre}}</div>
                                     {{x.info}}
                             </div>
-                            <span class="badge bg-info rounded-pill">{{x.fecha}}</span>
+                            <span class="badge bg-danger rounded-pill">{{x.fecha}}</span>
                         </li>
                     {% endfor %}
                 </ul>
@@ -44,11 +44,11 @@ Inicio - Proyectando Cursos
     </div>
 </section>
 <!-- Eventos destacados section-->
-<div class="list-group"></div>
+<div class="list-group py-5 px-5 bg-danger p-2 text-dark bg-opacity-10">
     {% for e in evento %}
     <a href="{% url 'evento' %}" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{e.nombre}}</h5>
+            <h5 class="text-danger mb-1">{{e.nombre}}</h5>
             <small class="text-muted"></small>
         </div>
         <p class="mb-1">{{e.info}}</p>

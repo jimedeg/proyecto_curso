@@ -22,4 +22,6 @@ urlpatterns = [
     path ('curso', curso, name= "curso"),
     path ('evento', evento, name= "evento"),
     path ('contacto', contacto, name= "contacto"),
+    path ('crear_curso', crear_curso, name= "crear_curso"),
+    path ('busqueda', busqueda, name= "busqueda"),
     ]

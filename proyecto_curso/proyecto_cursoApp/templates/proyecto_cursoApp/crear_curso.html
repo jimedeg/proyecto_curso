@@ -1,0 +1,19 @@
+{% extends 'proyecto_cursoApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Crear Curso - Proyectando Cursos
+{% endblock %}
+
+{% block contenidoPagina %}
+    <form action="" method="post">
+        <h2> Crear un nuevo curso</h2>
+        {% csrf_token %}
+
+        {{ form.as_p}}
+
+        <input type="submit" value="Crear Curso">
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'proyecto_cursoApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Crear Curso - Proyectando Cursos
+{% endblock %}
+
+{% block contenidoPagina %}
+<p>Buscar:
+     <form action="" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="" id="" min="0">
+
+        <input type="submit" value="Buscar">
+
+    </form> 
+</p>
+
+<p>Resultados:</p>
+<ul>
+    {% for resultado in busqueda %}
+
+        {{resultado.nombre}}  
+        {{resultado.info}}
+        
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

@@ -53,11 +53,18 @@ def crear_curso (request):
         return render(request,"proyecto_cursoApp/crear_curso.html",{"form":formulario_vacio})
             
 def busqueda (request):
-    
-    # if request.method == "POST":
+         
+    if request.method == "POST":
         
-    #     buscar = request.POST["buscar"]
+        nombre = request.POST["nombre"] 
+             
+        busquedas = Curso.objects.filter(nombre__icontains=nombre)
         
-    #     busquedas =    
+        return render(request,"proyecto_cursoApp/busqueda.html",{"busquedas": busquedas})
+  
+    else:
         
-    pass
+        busquedas=[]
+        
+        return render(request,"proyecto_cursoApp/busqueda.html",{"busquedas": busquedas})
+       

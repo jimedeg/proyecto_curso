@@ -12,3 +12,8 @@ class Evento(models.Model):
     info = models.CharField(max_length=100)
     fecha = models.DateTimeField()
     
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=50)
+    email = models.EmailField()
+    mensaje = models.CharField(max_length=300)
+    

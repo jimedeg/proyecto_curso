@@ -14,4 +14,5 @@ class EventoAdmin(admin.ModelAdmin):
 
 admin.site.register(Evento, EventoAdmin)
 
+
 #user= admin - contraseña= 1234

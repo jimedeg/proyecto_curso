@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 from proyecto_cursoApp.models import Curso, Evento
-from .forms import nuevo_curso
+from .forms import *
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -43,7 +43,8 @@ def register_request(request):
     
     if request.method == "POST":
         
-        form = UserCreationForm(request.POST)
+        #form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         
         if form.is_valid():
             
@@ -63,7 +64,8 @@ def register_request(request):
         
         return render(request,"proyecto_cursoApp/register.html",{"form": form})
     
-    form = UserCreationForm()
+    # form = UserCreationForm()
+    form = UserRegisterForm()
     
     return render(request,"proyecto_cursoApp/register.html",{"form": form})
 

@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from proyecto_cursoApp.models import Curso, Evento
 from .forms import nuevo_curso
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
@@ -38,6 +38,34 @@ def login_request(request):
     form = AuthenticationForm()
             
     return render(request,"proyecto_cursoApp/login.html",{"form": form})
+
+def register_request(request):
+    
+    if request.method == "POST":
+        
+        form = UserCreationForm(request.POST)
+        
+        if form.is_valid():
+            
+            username= form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            
+            form.save()
+            
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+            
+        
+        return render(request,"proyecto_cursoApp/register.html",{"form": form})
+    
+    form = UserCreationForm()
+    
+    return render(request,"proyecto_cursoApp/register.html",{"form": form})
 
 def curso (request):
     

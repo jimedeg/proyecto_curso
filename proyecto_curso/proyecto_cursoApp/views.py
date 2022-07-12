@@ -69,6 +69,11 @@ def register_request(request):
     
     return render(request,"proyecto_cursoApp/register.html",{"form": form})
 
+def logout_request(request):
+    logout(request)
+    return redirect("inicio")
+
+
 def curso (request):
     
     curso = Curso.objects.all()

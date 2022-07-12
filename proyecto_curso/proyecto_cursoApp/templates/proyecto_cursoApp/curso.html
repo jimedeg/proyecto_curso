@@ -8,21 +8,48 @@ Curso - Proyectando Cursos
 {% block contenidoPagina %}
 <section class="bg-light py-5">
     <div class="container px-5">
-        <div class="row gx-6 justify-content-center">
-            <div class="col-lg-6">
-                <h3>Los Cursos son:</h3>
-                <ul class="list-group">
-                    {% for x in curso %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{x.nombre}}</div>
-                                    {{x.info}}
-                            </div>
-                            <span class="badge bg-info rounded-pill">{{x.fecha}}</span>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href=" {% url 'crear_curso'%} "> + Crear nuevo curso</a>
+        <h1>Cursos:</h1>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    <a class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_curso' %}"> <i class="bi bi-plus-lg"></i> Crear Curso</a>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h4>
+            {% if buscar %}
+                resultado para "{{busqueda}}":
+                            
+            {% endif %}
+        </h4>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Información</th>
+                            <th scope="col">Fecha de inicio</th>
+                        </tr>
+                    </thead>
+                    <tbody>  
+                        {% for x in curso %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{x.nombre}}</td>
+                                <td>{{x.info}}</td>
+                                <td>{{x.fecha}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

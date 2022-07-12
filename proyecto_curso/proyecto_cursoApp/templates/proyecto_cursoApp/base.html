@@ -28,6 +28,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}">Eventos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
 
+                        
                         {% if user.is_authenticated %}
                             <li class="nav-item"> <p class="text-light my-2 mx-2"><i class="bi bi-person-square"></i> Hola, <b>{{user.username}}!</b></p></li>
                             <li class="nav-item"><a class="btn btn-outline-light mx-2" href="{% url 'logout' %}">Cerrar sesión</a></li>

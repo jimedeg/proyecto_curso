@@ -37,6 +37,7 @@ Curso - Proyectando Cursos
                             <th scope="col">Curso</th>
                             <th scope="col">Información</th>
                             <th scope="col">Fecha de inicio</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>  
@@ -46,6 +47,10 @@ Curso - Proyectando Cursos
                                 <td>{{x.nombre}}</td>
                                 <td>{{x.info}}</td>
                                 <td>{{x.fecha}}</td>
+                                <td>
+                                    <a href="{% url 'editar_curso' x.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'eliminar_curso' x.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

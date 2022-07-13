@@ -16,7 +16,11 @@ Curso - Proyectando Cursos
                     {% csrf_token %}
                     <input class="flex-grow-0 form-control mr-sm-2" type="search" name="buscar" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
-                    <a class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_curso' %}"> <i class="bi bi-plus-lg"></i> Crear Curso</a>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <a class="btn btn-outline-danger text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_curso' %}"> <i class="bi bi-plus-lg"></i> Crear Curso</a>
+                    {% endif %}
+                {% endif %}
                 </form>
             </div>
         </div>
@@ -37,7 +41,11 @@ Curso - Proyectando Cursos
                             <th scope="col">Curso</th>
                             <th scope="col">Información</th>
                             <th scope="col">Fecha de inicio</th>
-                            <th scope="col">Acciones</th>
+                            {% if user.is_authenticated %}
+                                {% if user.is_superuser %}
+                                    <th scope="col">Acciones</th>
+                                {% endif %}
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>  
@@ -48,8 +56,13 @@ Curso - Proyectando Cursos
                                 <td>{{x.info}}</td>
                                 <td>{{x.fecha}}</td>
                                 <td>
-                                    <a href="{% url 'editar_curso' x.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                    <a href="{% url 'eliminar_curso' x.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    {% if user.is_authenticated %}
+                                        {% if user.is_superuser %}
+                                            <a href="{% url 'editar_curso' x.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                            <a href="{% url 'eliminar_curso' x.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    
                                 </td>
                             </tr>
                         {% endfor %}

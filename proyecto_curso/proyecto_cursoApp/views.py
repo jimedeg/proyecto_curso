@@ -113,7 +113,7 @@ def crear_curso (request):
          
         return render(request,"proyecto_cursoApp/form_curso.html",{"form":formulario_vacio})
 
-# @staff_member_required
+@staff_member_required
 def editar_curso (request, curso_id):
  
     curso = Curso.objects.get(id=curso_id)
@@ -155,6 +155,28 @@ def evento (request):
     evento = Evento.objects.all()
     
     return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
+
+@staff_member_required
+def crear_evento (request):
+    #post
+    if request.method == "POST":
+        
+        formulario = nuevo_evento(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_evento = formulario.cleaned_data
+            
+            curso = Evento(nombre = info_evento ["nombre"], info = info_evento ["informacion"], fecha = info_evento ["fecha"] )
+            
+            return redirect("evento")
+        else:
+            return render(request,"proyecto_cursoApp/form_evento.html",{"form":formulario})
+    else:
+        
+        formulario_vacio= nuevo_evento()
+                 
+        return render(request,"proyecto_cursoApp/form_evento.html",{"form":formulario_vacio})
 
 def contacto (request):
     

@@ -2,7 +2,7 @@ from tkinter import E
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
-from proyecto_cursoApp.models import Curso, Evento
+from proyecto_cursoApp.models import *
 from .forms import *
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -16,7 +16,16 @@ def inicio (request):
     curso = Curso.objects.all()[:3]
     evento = Evento.objects.all()[:3]
     
-    return render(request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento})
+    if request.user.is_authenticated:
+        
+       try: 
+            avatar = Avatar.objects.filter(usuario=request.user)
+            url = avatar.imagen.url 
+       except:
+           url = "/media/avatar/generica.jpg"
+           return render(request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento, 'url': url})
+
+    return render (request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento})
 
 def login_request(request):
     
@@ -46,7 +55,7 @@ def register_request(request):
     
     if request.method == "POST":
         
-        # form = UserCreationForm(request.POST)
+        # form = UserCreationForm(request.POST) # formulario de registro por defecto de django
         form = UserRegisterForm(request.POST)
         
         if form.is_valid():
@@ -101,6 +110,25 @@ def editar_perfil (request):
         form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
     
     return render(request,"proyecto_cursoApp/editar_perfil.html",{"form":form})
+
+@login_required
+def agregar_avatar (request):
+    
+    if request.method == "POST":
+        
+        form = AvatarForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            
+            user = User.objects.get(username=request.user.username)
+            avatar = Avatar(usuario= user, imagen=form.cleaned_data["imagen"])
+            avatar.save()
+            
+            return redirect("inicio")
+    else:
+        form = AvatarForm()
+    
+    return render(request,"proyecto_cursoApp/agregar_avatar.html",{"form":form})
 
 def curso (request):
     

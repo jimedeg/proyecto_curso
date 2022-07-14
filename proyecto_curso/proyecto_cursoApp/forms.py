@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Avatar
+
 class nuevo_curso(forms.Form):
     
     nombre = forms.CharField(max_length= 30)
@@ -24,7 +26,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields= ['username', 'first_name', 'last_name', 'email', 'password1', 'password2'] 
-        
         # help_texts= {k:"" for k in fields}
         
 class UserEditForm(UserCreationForm):
@@ -40,4 +41,11 @@ class UserEditForm(UserCreationForm):
     class Meta:
         model = User
         fields= ['first_name', 'last_name', 'email', 'password1', 'password2']
-         
+
+class AvatarForm(forms.Form):
+     
+    imagen = forms.ImageField(label="Imagen")
+    
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

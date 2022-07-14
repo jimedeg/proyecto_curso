@@ -1,6 +1,13 @@
-from distutils.log import info
 from django.db import models
+from django.contrib.auth.models import User
 
+#modelo de Avatar 
+class Avatar(models.Model):
+    
+    usuario = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    
+    imagen = models.ImageField(upload_to='avatar/', blank=True)
+    
 # Create your models here.
 class Curso(models.Model):
     nombre = models.CharField(max_length=30)

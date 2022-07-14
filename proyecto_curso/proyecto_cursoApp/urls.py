@@ -23,6 +23,7 @@ urlpatterns = [
     path ('register', register_request, name= "register"),
     path ('logout', logout_request, name= "logout"),
     path ('editar_perfil', editar_perfil, name= "editar_perfil"),
+    path ('agregar_avatar', agregar_avatar, name= "agregar_avatar"),
     
     path ('curso', curso, name= "curso"),
     path ('crear_curso', crear_curso, name= "crear_curso"),

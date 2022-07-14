@@ -8,6 +8,11 @@ class nuevo_curso(forms.Form):
     informacion = forms.CharField(max_length=100)
     fecha = forms.DateField()
     
+class nuevo_evento(forms.Form):
+    nombre = forms.CharField(max_length= 30)
+    informacion = forms.CharField(max_length=100)
+    fecha = forms.DateField()    
+    
 class UserRegisterForm(UserCreationForm):
     
     email = forms.EmailField(label="Email")

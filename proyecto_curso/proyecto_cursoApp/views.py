@@ -1,3 +1,4 @@
+from tkinter import E
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
@@ -152,6 +153,16 @@ def eliminar_curso (request, curso_id):
             
 def evento (request):
     
+    if request.method == "POST":
+        
+        buscar = request.POST["buscar"]
+        
+        if buscar != "":
+            evento = Evento.objects.filter( Q(nombre__icontains=buscar)).values()
+            
+            return render(request,"proyecto_cursoApp/evento.html",{"evento":evento, "buscar":True, "busqueda":buscar})
+         
+    
     evento = Evento.objects.all()
     
     return render(request,"proyecto_cursoApp/evento.html",{'evento': evento})
@@ -167,7 +178,8 @@ def crear_evento (request):
             
             info_evento = formulario.cleaned_data
             
-            curso = Evento(nombre = info_evento ["nombre"], info = info_evento ["informacion"], fecha = info_evento ["fecha"] )
+            evento = Evento(nombre = info_evento ["nombre"], info = info_evento ["informacion"], fecha = info_evento ["fecha"] )
+            evento.save()
             
             return redirect("evento")
         else:
@@ -177,6 +189,43 @@ def crear_evento (request):
         formulario_vacio= nuevo_evento()
                  
         return render(request,"proyecto_cursoApp/form_evento.html",{"form":formulario_vacio})
+
+@staff_member_required
+def editar_evento (request, evento_id):
+ 
+    evento = Evento.objects.get(id=evento_id)
+    
+    if request.method == "POST":
+        
+        formulario = nuevo_evento(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_evento = formulario.cleaned_data
+            
+            evento.nombre = info_evento ["nombre"]
+            evento.info = info_evento ["informacion"]
+            evento.fecha = info_evento ["fecha"]
+            evento.save()
+            
+            return redirect("evento")
+        
+        else:
+           return render(request,"proyecto_cursoApp/form_evento.html",{"form":formulario}) 
+       
+    else:
+        formulario = nuevo_evento(initial={"nombre": evento.nombre, "informacion": evento.info, "fecha": evento.fecha})       
+        
+        return render(request,"proyecto_cursoApp/form_evento.html",{"form":formulario, "accion":"Editar Evento"})
+
+@staff_member_required
+def eliminar_evento (request, evento_id):
+    
+    evento = Evento.objects.get(id=evento_id)
+    
+    evento.delete()
+    
+    return redirect("evento")    
 
 def contacto (request):
     

@@ -29,6 +29,9 @@ urlpatterns = [
     path ('eliminar_curso/<curso_id>/', eliminar_curso, name= "eliminar_curso"),
     
     path ('evento', evento, name= "evento"),
+    path ('crear_evento', crear_evento, name= "crear_evento"),
+    path ('editar_evento/<evento_id>/', editar_evento, name= "editar_evento"),
+    path ('eliminar_evento/<evento_id>/', eliminar_evento, name= "eliminar_evento"),
     
     path ('contacto', contacto, name= "contacto"),
     

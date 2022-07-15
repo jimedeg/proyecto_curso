@@ -1,14 +1,17 @@
-from tkinter import E
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+#from django.http import HttpResponse
+from django.db.models import Q
 
 from proyecto_cursoApp.models import *
 from .forms import *
-from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+
+from django.contrib.auth.forms import AuthenticationForm #, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 # Create your views here.
 def inicio (request):
@@ -41,10 +44,13 @@ def login_request(request):
             
             if user is not None:
                 login(request, user)
+                messages.success(request, f"Bienvenido {username}, cómo estas?")
                 return redirect("inicio")
             else:
+                messages.error(request, "Usuario o contraseña incorrectos")
                 return redirect("login")
         else:
+            messages.error(request, "Usuario o contraseña incorrectos")
             return redirect("login")
     
     form = AuthenticationForm()
@@ -69,11 +75,24 @@ def register_request(request):
             
             if user is not None:
                 login(request, user)
+                messages.success(request, "Usuario creado con éxito!")
                 return redirect("inicio")
             else:
                 return redirect("login")
+    
+        password1 = form.data['password1']
+        password2 = form.data['password2']
             
-        
+        for msg in form.errors.as_data():
+            if msg == 'email':
+                messages.error(request, "El correo es invalido o ya existe.")
+            if msg == 'username':
+                messages.error(request, "El nombre de usuario es invalido o ya existe.")
+            if msg == 'password2' and password1 == password2:
+                messages.error(request, "La contraseña elegida no cumple los requisitos.")
+            elif msg == 'password2' and password1 != password2:
+                messages.error(request, "Las contraseñas no coinciden.")      
+            
         return render(request,"proyecto_cursoApp/register.html",{"form": form})
     
     # form = UserCreationForm()

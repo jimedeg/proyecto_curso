@@ -12,6 +12,10 @@ Registro - Proyectando
         <div class="row gx-6 justify-content-center">
             <div class="col-lg-6">
                 <h3>Registrate</h3>
+                <div>
+                    {% for message in messages %}
+                    <p class="alert alert-danger"> {{message}} </p>
+                    {% endfor %}
                 <form action="" method="post">
                     {% csrf_token %}
             

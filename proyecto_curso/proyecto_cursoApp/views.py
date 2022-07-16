@@ -19,6 +19,10 @@ def inicio (request):
     curso = Curso.objects.all()[:3]
     evento = Evento.objects.all()[:3]
     
+    ctx = {
+       'form':  nuevo_comentario()
+     }
+    
     if request.user.is_authenticated:
         
        try: 
@@ -28,7 +32,7 @@ def inicio (request):
            url = "/media/avatar/generica.jpg"
            return render(request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento, 'url': url})
 
-    return render (request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento})
+    return render (request,"proyecto_cursoApp/index.html",{'curso': curso , 'evento': evento, 'ctx': ctx})
 
 def login_request(request):
     
@@ -299,6 +303,58 @@ def eliminar_evento (request, evento_id):
     evento.delete()
     
     return redirect("evento")    
+
+def comentario (request):
+
+    comentario = Comentario.objects.all()
+    formulario = nuevo_comentario()
+    
+    if request.method == "POST":
+        
+        formulario = nuevo_comentario(request.POST)
+        
+        if formulario.is_valid():
+            
+            info_comentario = formulario.cleaned_data
+            
+            comentario = Comentario(nombre = info_comentario ["nombre"], email = info_comentario ["email"], mensaje = info_comentario ["mensaje"] )
+           
+            comentario.save()
+            
+            return redirect("comentario")
+        
+        else:
+            
+            return render(request,"proyecto_cursoApp/form_comentario.html",{"form":formulario})
+    else:
+        
+        form_vacio = nuevo_comentario()
+   
+        return render(request,"proyecto_cursoApp/comentario.html",{"comentario":comentario, "formulario": form_vacio}) #"buscar":False
+    
+    
+# @login_required
+# def crear_comentario (request):
+#     #post
+#     if request.method == "POST":
+        
+#         formulario = nuevo_comentario(request.POST)
+        
+#         if formulario.is_valid():
+            
+#             info_formulario = formulario.cleaned_data
+            
+#             comentario = Comentario(nombre = info_formulario ["nombre"], email = info_formulario ["email"], mensaje = info_formulario ["mensaje"] )
+#             comentario.save() #Guardar en la db
+            
+#             return redirect("comentario")
+#         else:
+#             return render(request,"proyecto_cursoApp/comentario.html",{"form":formulario})
+#     else:
+        
+#         form_vacio= nuevo_comentario()
+         
+#         return render(request,"proyecto_cursoApp/comentario.html",{"formulario":form_vacio})
 
 def contacto (request):
     

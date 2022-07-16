@@ -35,6 +35,9 @@ urlpatterns = [
     path ('editar_evento/<evento_id>/', editar_evento, name= "editar_evento"),
     path ('eliminar_evento/<evento_id>/', eliminar_evento, name= "eliminar_evento"),
     
+    path ('comentario', comentario, name= "comentario"),
+    # path ('crear_comentario', crear_comentario, name= "crear_comentario"),
+    
     path ('contacto', contacto, name= "contacto"),
     
     path ('busqueda', busqueda, name= "busqueda"),

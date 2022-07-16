@@ -1,3 +1,4 @@
+from ssl import create_default_context
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -49,3 +50,10 @@ class AvatarForm(forms.Form):
     class Meta:
         model = Avatar
         fields = ['imagen']
+
+class nuevo_comentario(forms.Form):
+    nombre = forms.CharField(max_length=50)
+    email = forms.EmailField()
+    mensaje = forms.CharField(max_length=300, required=True, widget=forms.Textarea)
+
+    

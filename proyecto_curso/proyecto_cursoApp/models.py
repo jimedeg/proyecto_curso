@@ -23,4 +23,10 @@ class Contacto(models.Model):
     nombre = models.CharField(max_length=50)
     email = models.EmailField()
     mensaje = models.CharField(max_length=300)
-    
+
+class Comentario(models.Model):
+    nombre = models.CharField(max_length=50)
+    email = models.EmailField()
+    mensaje = models.TextField(max_length=500, blank=True, null=True)
+    actualizado = models.DateTimeField(auto_now=True)
+    creado = models.DateTimeField(auto_now_add=True)   
